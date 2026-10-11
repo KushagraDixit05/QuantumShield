@@ -1,0 +1,9 @@
+client,role,round,accuracy,admitted,aggregator_check_s,cycles,delta_norm,norm_sq_over_B2,peak_rss_mb,prove_s,reason,receipt_bytes
+0,honest,0,,True,0.191,3014656,0.5068,,2367,379.7,ok,3058804
+1,honest,0,,True,0.295,3014656,0.4682,,2367,491.19,ok,3058804
+4,attacker x50,0,,False,,,,427.7,,,guest_can_prove=False; bad_proof:missing_proof_hash,
+agg,aggregate,0,0.3008,"[0, 1]",,,,,,,model_hash_equal_to_non_zk=True,
+0,honest,1,,True,0.277,2916352,0.3718,,2368,494.92,ok,3024116
+1,honest,1,,True,0.218,3014656,0.3487,,2367,610.44,ok,3058804
+4,attacker x50,1,,False,,,,295.0,,,guest_can_prove=False; bad_proof:missing_proof_hash,
+agg,aggregate,1,0.4123,"[0, 1]",,,,,,,model_hash_equal_to_non_zk=True,

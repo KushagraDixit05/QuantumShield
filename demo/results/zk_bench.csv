@@ -1,0 +1,3 @@
+run,vector,kind,po2,prove_s,verify_s,agg_check_s,receipt_bytes,cycles,user_cycles,segments,peak_rss_kb
+0,honest_main_s0_t0_c0,composite,18,402.0,0.238,0.197,3058804,3014656,2127722,12,2421732
+1,honest_main_s0_t0_c1,composite,18,393.39,0.222,0.201,3058804,3014656,2134158,12,2423628

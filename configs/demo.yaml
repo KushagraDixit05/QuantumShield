@@ -1,0 +1,4 @@
+# Phase 5 demo. Scenarios run on the frozen Phase 1 config (K=20, batch 32); the real-receipt stage uses the Phase 3 config.
+base: configs/mvp.yaml
+zk_config: configs/phase3.yaml
+seeds: [0, 1, 2, 3, 4]
