@@ -1,0 +1,11 @@
+# Benchmark settings for experiments/zk/bench.py (the only place a `bench:` section lives).
+base: configs/phase3.yaml
+bench:
+  repeats: 2                         # runs; run i proves the i-th honest vector below (distinct inputs)
+  vectors: [honest_main_s0_t0_c0, honest_main_s0_t0_c1, honest_main_s0_t1_c2, honest_main_s0_t3_c3,
+            honest_main_s0_t9_c4, honest_main_s1_t2_c0, honest_main_s2_t5_c1, honest_main_s0_t4_c2]
+  vector_dir: zk/bridge/vectors
+  out_csv: demo/results/zk_bench.csv
+  out_md: demo/results/zk_bench.md
+  work_dir: demo/results/zk/bench    # receipts of the benchmark runs
+  kinds: [composite]                 # --kinds composite,succinct compares kinds at vector 0 (succinct needs more memory)
