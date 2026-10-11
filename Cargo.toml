@@ -1,0 +1,4 @@
+[workspace]
+resolver = "2"
+members = []
+# zk host/guest crates are added after the RISC Zero toolchain check (docs/toolchain_check.md)

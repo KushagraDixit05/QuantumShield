@@ -1,0 +1,10 @@
+# Experiment grid for the Phase 1 baseline. Model/FL params come from configs/mvp.yaml.
+base: configs/mvp.yaml
+calibration_seed: 100        # disjoint from eval seeds
+calibration_percentile: 99
+calibration_margin: 1.5
+seeds: [0, 1, 2, 3, 4]
+attacks: [none, scaled, sign_flip, label_flip, replay]
+defences: [fedavg, norm_filter, median]
+out_csv: demo/results/baseline.csv
+out_md: demo/results/baseline.md

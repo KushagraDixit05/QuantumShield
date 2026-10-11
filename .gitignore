@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+target/
+.pytest_cache/
+.local/
+*.egg-info/
+data/
+node_modules/
+target-guest/
+.zk_*.lock
+*.tsbuildinfo
+test-results/

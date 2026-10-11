@@ -1,0 +1,11 @@
+numpy
+torch
+scikit-learn
+pyyaml
+pytest
+matplotlib
+cryptography
+liboqs-python
+fastapi
+uvicorn
+httpx

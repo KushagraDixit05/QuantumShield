@@ -1,0 +1,8 @@
+[project]
+name = "quantumshield-fl"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "Post-quantum, zero-knowledge verifiable consensus for decentralized federated learning"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

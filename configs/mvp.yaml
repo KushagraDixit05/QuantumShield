@@ -1,0 +1,17 @@
+# Frozen MVP parameters (plan/MVP_Phase_0). B is set in Phase 1 from benign update norms.
+seed: 0
+aggregators: 4
+f: 1
+clients: 5
+malicious_clients: 1
+rounds: 10
+model: {input: 64, hidden: 32, output: 10}   # sklearn digits; 2,410 params
+fixed_point_scale_bits: 16
+fl: {K: 20, batch: 32, lr: 0.3}
+attack: {scale: 50, flip_scale: 1, label_shift: 1}
+norm_bound_B: 1.5963
+# Phase 2: signatures none | classical | pq | hybrid. "none" is the unchanged Phase 1 path.
+signatures: none
+sig_alg: ML-DSA-65        # PQ scheme for pq/hybrid: ML-DSA-44 | ML-DSA-65 | Falcon-512 | SLH-DSA-128s
+classical_alg: Ed25519
+epoch_rounds: 5           # key rotation period (rounds)
