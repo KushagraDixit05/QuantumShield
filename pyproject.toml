@@ -6,3 +6,4 @@ description = "Post-quantum, zero-knowledge verifiable consensus for decentraliz
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
