@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = ["host", "methods"]   # zk/guest is built by zk/methods (risc0-build) and has its own workspace
+
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+debug = 1
+lto = true

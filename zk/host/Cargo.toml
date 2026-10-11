@@ -1,0 +1,14 @@
+[package]
+name = "qs-zk"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "qs-zk"
+path = "src/main.rs"
+
+[dependencies]
+methods = { path = "../methods" }
+risc0-zkvm = { version = "^3.0.6" }
+bincode = "1"
+libc = "0.2"

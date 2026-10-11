@@ -1,0 +1,8 @@
+{
+ "K": 4,
+ "batch": 8,
+ "journal_hex": null,
+ "ok": false,
+ "reason": "delta_mismatch",
+ "relation": 1
+}

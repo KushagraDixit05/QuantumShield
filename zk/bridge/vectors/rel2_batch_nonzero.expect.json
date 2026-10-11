@@ -1,0 +1,8 @@
+{
+ "K": 0,
+ "batch": 4,
+ "journal_hex": null,
+ "ok": false,
+ "reason": "bad_params",
+ "relation": 2
+}

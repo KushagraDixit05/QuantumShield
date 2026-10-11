@@ -1,0 +1,20 @@
+# Phase 3: ZK-verified updates. Base is configs/mvp.yaml; K/batch cut to what a real proof can afford
+# (docs/zk_cost.md, decisions D-017). B recalibrated on seed 100 with the Phase 1 rule
+# (p99 of benign ||Δ|| = 0.6321, x1.5).
+base: configs/mvp.yaml
+fl: {K: 4, batch: 8, lr: 0.3}
+norm_bound_B: 0.9482
+signatures: hybrid
+seeds: [0]
+zk:
+  relation: 1
+  po2: 18
+  receipt_kind: composite
+  out_dir: demo/results/zk
+fl_run:                          # experiments.run_phase3: only these clients/rounds take part (each proof is about 6.4 min)
+  seed: 0
+  rounds: 2
+  honest: [0, 1]
+  attacker: 4                    # submits its honest update x attack_scale and cannot produce a proof
+  attack_scale: 50
+  out_prefix: demo/results/phase3_fl

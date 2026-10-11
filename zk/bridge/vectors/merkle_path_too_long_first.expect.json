@@ -1,0 +1,8 @@
+{
+ "K": 4,
+ "batch": 8,
+ "journal_hex": null,
+ "ok": false,
+ "reason": "trailing_bytes",
+ "relation": 1
+}
