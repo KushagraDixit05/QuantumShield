@@ -1,0 +1,1577 @@
+{
+  "components": {
+    "schemas": {
+      "CertVote": {
+        "properties": {
+          "node": {
+            "title": "Node",
+            "type": "integer"
+          },
+          "payload": {
+            "title": "Payload",
+            "type": "string"
+          },
+          "sigs": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "title": "Sigs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "node",
+          "payload",
+          "sigs"
+        ],
+        "title": "CertVote",
+        "type": "object"
+      },
+      "Certificate": {
+        "properties": {
+          "certificate_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Certificate Id"
+          },
+          "round": {
+            "title": "Round",
+            "type": "integer"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          },
+          "votes": {
+            "items": {
+              "$ref": "#/components/schemas/CertVote"
+            },
+            "title": "Votes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "run_id",
+          "round",
+          "votes"
+        ],
+        "title": "Certificate",
+        "type": "object"
+      },
+      "CheckedVote": {
+        "properties": {
+          "node": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Node"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node",
+          "ok",
+          "reason"
+        ],
+        "title": "CheckedVote",
+        "type": "object"
+      },
+      "ConsensusResponse": {
+        "properties": {
+          "f": {
+            "title": "F",
+            "type": "integer"
+          },
+          "leader": {
+            "title": "Leader",
+            "type": "integer"
+          },
+          "leader_policy": {
+            "title": "Leader Policy",
+            "type": "string"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "quorum": {
+            "title": "Quorum",
+            "type": "integer"
+          },
+          "rounds": {
+            "items": {
+              "$ref": "#/components/schemas/ConsensusRound"
+            },
+            "title": "Rounds",
+            "type": "array"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "seed": {
+            "title": "Seed",
+            "type": "integer"
+          },
+          "seeds_available": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Seeds Available",
+            "type": "array"
+          },
+          "view_changes": {
+            "items": {},
+            "title": "View Changes",
+            "type": "array"
+          },
+          "view_changes_note": {
+            "title": "View Changes Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id",
+          "seed",
+          "seeds_available",
+          "n",
+          "f",
+          "quorum",
+          "leader",
+          "leader_policy",
+          "view_changes",
+          "view_changes_note",
+          "rounds"
+        ],
+        "title": "ConsensusResponse",
+        "type": "object"
+      },
+      "ConsensusRound": {
+        "properties": {
+          "bad_votes": {
+            "title": "Bad Votes",
+            "type": "integer"
+          },
+          "certificate_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Certificate Id"
+          },
+          "equivocators": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Equivocators",
+            "type": "array"
+          },
+          "finalized": {
+            "title": "Finalized",
+            "type": "boolean"
+          },
+          "model_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Hash"
+          },
+          "round": {
+            "title": "Round",
+            "type": "integer"
+          },
+          "votes": {
+            "items": {
+              "$ref": "#/components/schemas/ConsensusVote"
+            },
+            "title": "Votes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "round",
+          "model_hash",
+          "votes",
+          "finalized",
+          "equivocators",
+          "bad_votes",
+          "certificate_id"
+        ],
+        "title": "ConsensusRound",
+        "type": "object"
+      },
+      "ConsensusVote": {
+        "properties": {
+          "hash": {
+            "title": "Hash",
+            "type": "string"
+          },
+          "node": {
+            "title": "Node",
+            "type": "integer"
+          },
+          "signer_alg": {
+            "title": "Signer Alg",
+            "type": "string"
+          },
+          "valid": {
+            "title": "Valid",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "node",
+          "signer_alg",
+          "hash",
+          "valid"
+        ],
+        "title": "ConsensusVote",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Hardware": {
+        "properties": {
+          "cpu": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cpu"
+          },
+          "gpu_used": {
+            "const": false,
+            "default": false,
+            "title": "Gpu Used",
+            "type": "boolean"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "os": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Os"
+          },
+          "ram": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ram"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "threads": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Threads"
+          },
+          "zkvm": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zkvm"
+          }
+        },
+        "required": [
+          "cpu",
+          "threads",
+          "ram",
+          "os",
+          "zkvm",
+          "source"
+        ],
+        "title": "Hardware",
+        "type": "object"
+      },
+      "Health": {
+        "properties": {
+          "live_zk_enabled": {
+            "const": false,
+            "default": false,
+            "title": "Live Zk Enabled",
+            "type": "boolean"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "prover_lock_held": {
+            "title": "Prover Lock Held",
+            "type": "boolean"
+          },
+          "queue_length": {
+            "title": "Queue Length",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ok",
+          "prover_lock_held",
+          "queue_length"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "LimitationItem": {
+        "properties": {
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "n",
+          "text"
+        ],
+        "title": "LimitationItem",
+        "type": "object"
+      },
+      "LimitationSection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/LimitationItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "items"
+        ],
+        "title": "LimitationSection",
+        "type": "object"
+      },
+      "LimitationsResponse": {
+        "properties": {
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/LimitationSection"
+            },
+            "title": "Sections",
+            "type": "array"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "sections"
+        ],
+        "title": "LimitationsResponse",
+        "type": "object"
+      },
+      "Receipt": {
+        "properties": {
+          "bytes": {
+            "title": "Bytes",
+            "type": "integer"
+          },
+          "client": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client"
+          },
+          "cycles": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cycles"
+          },
+          "generated": {
+            "title": "Generated",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "image_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Id"
+          },
+          "journal_bytes": {
+            "title": "Journal Bytes",
+            "type": "integer"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "peak_rss_mb": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peak Rss Mb"
+          },
+          "prove_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prove S"
+          },
+          "replayed": {
+            "const": true,
+            "default": true,
+            "title": "Replayed",
+            "type": "boolean"
+          },
+          "round": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Round"
+          },
+          "verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verified"
+          },
+          "verify_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verify Error"
+          },
+          "verify_s": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verify S"
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "bytes",
+          "generated",
+          "journal_bytes",
+          "round",
+          "client",
+          "image_id",
+          "prove_s",
+          "cycles",
+          "peak_rss_mb",
+          "verified",
+          "verify_s",
+          "verify_error",
+          "label"
+        ],
+        "title": "Receipt",
+        "type": "object"
+      },
+      "ReceiptsResponse": {
+        "properties": {
+          "hardware": {
+            "$ref": "#/components/schemas/Hardware"
+          },
+          "receipts": {
+            "items": {
+              "$ref": "#/components/schemas/Receipt"
+            },
+            "title": "Receipts",
+            "type": "array"
+          },
+          "source": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source",
+          "hardware",
+          "receipts"
+        ],
+        "title": "ReceiptsResponse",
+        "type": "object"
+      },
+      "ResultsResponse": {
+        "properties": {
+          "columns": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Columns",
+            "type": "array"
+          },
+          "diverged_note": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Diverged Note"
+          },
+          "json": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Json"
+          },
+          "markdown": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Markdown"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "rows": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Rows",
+            "type": "array"
+          },
+          "source": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source",
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "source",
+          "columns",
+          "rows"
+        ],
+        "title": "ResultsResponse",
+        "type": "object"
+      },
+      "RunCreated": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "queue_position": {
+            "title": "Queue Position",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "queue_position"
+        ],
+        "title": "RunCreated",
+        "type": "object"
+      },
+      "RunRequest": {
+        "properties": {
+          "aggregator": {
+            "default": "fedavg",
+            "enum": [
+              "fedavg",
+              "norm_filter",
+              "median",
+              "clip"
+            ],
+            "title": "Aggregator",
+            "type": "string"
+          },
+          "attack": {
+            "anyOf": [
+              {
+                "enum": [
+                  "none",
+                  "scaled",
+                  "forged",
+                  "replay"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attack"
+          },
+          "defence": {
+            "anyOf": [
+              {
+                "enum": [
+                  "on",
+                  "off"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Defence"
+          },
+          "live_zk": {
+            "default": false,
+            "title": "Live Zk",
+            "type": "boolean"
+          },
+          "rounds": {
+            "anyOf": [
+              {
+                "maximum": 50.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rounds"
+          },
+          "scenario": {
+            "anyOf": [
+              {
+                "enum": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scenario"
+          },
+          "seeds": {
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Seeds",
+            "type": "array"
+          }
+        },
+        "required": [
+          "seeds"
+        ],
+        "title": "RunRequest",
+        "type": "object"
+      },
+      "Scenario": {
+        "properties": {
+          "attack": {
+            "enum": [
+              "none",
+              "scaled"
+            ],
+            "title": "Attack",
+            "type": "string"
+          },
+          "defence": {
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Defence",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "enum": [
+              "A",
+              "B",
+              "C"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "attack",
+          "defence",
+          "description"
+        ],
+        "title": "Scenario",
+        "type": "object"
+      },
+      "ScenariosResponse": {
+        "properties": {
+          "aggregators": {
+            "items": {
+              "enum": [
+                "fedavg",
+                "norm_filter",
+                "median",
+                "clip"
+              ],
+              "type": "string"
+            },
+            "title": "Aggregators",
+            "type": "array"
+          },
+          "attacks": {
+            "items": {
+              "enum": [
+                "none",
+                "scaled",
+                "forged",
+                "replay"
+              ],
+              "type": "string"
+            },
+            "title": "Attacks",
+            "type": "array"
+          },
+          "default_rounds": {
+            "title": "Default Rounds",
+            "type": "integer"
+          },
+          "default_seeds": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Default Seeds",
+            "type": "array"
+          },
+          "live_zk_enabled": {
+            "const": false,
+            "default": false,
+            "title": "Live Zk Enabled",
+            "type": "boolean"
+          },
+          "scenarios": {
+            "items": {
+              "$ref": "#/components/schemas/Scenario"
+            },
+            "title": "Scenarios",
+            "type": "array"
+          },
+          "source": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source",
+          "scenarios",
+          "attacks",
+          "aggregators",
+          "default_seeds",
+          "default_rounds"
+        ],
+        "title": "ScenariosResponse",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "VerifyRequest": {
+        "properties": {
+          "certificate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Certificate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "round": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Round"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          }
+        },
+        "title": "VerifyRequest",
+        "type": "object"
+      },
+      "VerifyResponse": {
+        "properties": {
+          "checked": {
+            "items": {
+              "$ref": "#/components/schemas/CheckedVote"
+            },
+            "title": "Checked",
+            "type": "array"
+          },
+          "public_keys_only": {
+            "const": true,
+            "default": true,
+            "title": "Public Keys Only",
+            "type": "boolean"
+          },
+          "quorum_met": {
+            "title": "Quorum Met",
+            "type": "boolean"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "valid": {
+            "title": "Valid",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "valid",
+          "quorum_met",
+          "checked",
+          "source"
+        ],
+        "title": "VerifyResponse",
+        "type": "object"
+      },
+      "ZkRound": {
+        "properties": {
+          "client": {
+            "title": "Client",
+            "type": "integer"
+          },
+          "consensus_accuracy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consensus Accuracy"
+          },
+          "consensus_model_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consensus Model Hash"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "receipt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Id"
+          },
+          "replayed": {
+            "const": true,
+            "default": true,
+            "title": "Replayed",
+            "type": "boolean"
+          },
+          "role": {
+            "title": "Role",
+            "type": "string"
+          },
+          "round": {
+            "title": "Round",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "no_receipt",
+              "rejected",
+              "unverified"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "round",
+          "client",
+          "role",
+          "status",
+          "reason",
+          "receipt_id",
+          "label"
+        ],
+        "title": "ZkRound",
+        "type": "object"
+      },
+      "ZkRoundsResponse": {
+        "properties": {
+          "rounds": {
+            "items": {
+              "$ref": "#/components/schemas/ZkRound"
+            },
+            "title": "Rounds",
+            "type": "array"
+          },
+          "source": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Source",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source",
+          "rounds"
+        ],
+        "title": "ZkRoundsResponse",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "QuantumShield-FL API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/certificates/verify": {
+      "post": {
+        "operationId": "verify_certificate_api_certificates_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Verify Certificate"
+      }
+    },
+    "/api/certificates/{run_id}/{round}": {
+      "get": {
+        "description": "The round's signed votes, in a form that can be pasted into POST /api/certificates/verify.",
+        "operationId": "get_certificate_api_certificates__run_id___round__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "round",
+            "required": true,
+            "schema": {
+              "title": "Round",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "seed",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Seed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Certificate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Certificate"
+      }
+    },
+    "/api/consensus/{run_id}": {
+      "get": {
+        "operationId": "consensus_api_consensus__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "seed",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Seed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsensusResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Consensus"
+      }
+    },
+    "/api/health": {
+      "get": {
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/api/limitations": {
+      "get": {
+        "operationId": "get_limitations_api_limitations_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitationsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Limitations"
+      }
+    },
+    "/api/overheads": {
+      "get": {
+        "operationId": "get_overheads_api_overheads_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Overheads"
+      }
+    },
+    "/api/receipts": {
+      "get": {
+        "operationId": "get_receipts_api_receipts_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Receipts"
+      }
+    },
+    "/api/results/{name}": {
+      "get": {
+        "operationId": "get_result_api_results__name__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Result"
+      }
+    },
+    "/api/runs": {
+      "post": {
+        "operationId": "create_run_api_runs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunCreated"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Run"
+      }
+    },
+    "/api/runs/{run_id}/stream": {
+      "get": {
+        "operationId": "stream_api_runs__run_id__stream_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Stream"
+      }
+    },
+    "/api/scenarios": {
+      "get": {
+        "operationId": "scenarios_api_scenarios_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenariosResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Scenarios"
+      }
+    },
+    "/api/zk/rounds": {
+      "get": {
+        "operationId": "get_zk_rounds_api_zk_rounds_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZkRoundsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Zk Rounds"
+      }
+    }
+  }
+}
