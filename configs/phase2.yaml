@@ -1,0 +1,25 @@
+# Phase 2 experiments. Model/FL params come from configs/mvp.yaml (Phase 1 settings unchanged).
+base: configs/mvp.yaml
+seeds: [0, 1, 2, 3, 4]
+modes: [none, classical, pq, hybrid]
+pq_alg: ML-DSA-65
+all_algs: [ML-DSA-44, ML-DSA-65, Falcon-512, SLH-DSA-128s]   # FL loop run once per alg (pq mode, benign, seed 0)
+fl_scenarios:        # (name, poisoning attack, envelope attack, defence)
+  - {name: benign,                 attack: none,   env_attack: null,            defence: fedavg}
+  - {name: scaled-x50 (own key),   attack: scaled, env_attack: null,            defence: norm_filter}
+  - {name: "replay stale delta (own key, re-signed)", attack: replay, env_attack: null, defence: fedavg}
+  - {name: replay old envelope,    attack: none,   env_attack: replay_envelope, defence: fedavg}
+  - {name: tamper delta,           attack: none,   env_attack: tamper_delta,    defence: fedavg}
+out_fl: demo/results/phase2_fl
+bench:
+  seed: 0
+  algs: [Ed25519, ML-DSA-44, ML-DSA-65, Falcon-512, SLH-DSA-128s]
+  hybrid_pq_alg: ML-DSA-65
+  reps: {keygen: 50, sign: 300, sign_slow: 20, verify: 500}
+  clients: [50, 100, 500]
+  repeats: 3
+  out_prefix: demo/results/sig_bench
+forgery:
+  seed: 0
+  victim: 0
+  out_md: demo/results/forgery.md
